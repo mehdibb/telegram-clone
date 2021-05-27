@@ -7,4 +7,5 @@ export const StyledNavigationBar = styled.nav`
   padding: 16px;
   color: var(--white);
   background-color: var(--main-blue);
+  font-weight: 700;
 `;

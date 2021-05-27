@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background-color: var(--main-blue);
+}
+
+*:hover::-webkit-scrollbar-track {
+  background-color: var(--border-color-light-grey);
+}
+
+html, body, #root {
+  height: 100%
+}
+
+html {
+  background-color: var(--root-background-color);
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+:root {
+  --white: #FFF;
+  --grey: #999;
+  --main-blue: #5682A3;
+  --root-background-color: #E7EBF0;
+  --border-color-light-grey: #E9EBED;
+  --list-item-hover-background-color: #F2F6FA;
+  --list-item-description-color: #888;
+  --list-item-date-color: #B3B3B3;
+  --unread-messages-count-background-color: #BFBFBF;
+}

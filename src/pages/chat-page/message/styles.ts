@@ -8,10 +8,13 @@ export const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export const Title = styled.span`
+export const Title = styled.button`
   width: max-content;
+  border: unset;
   color: var(--main-blue);
   font-weight: 700;
+  cursor: pointer;
+  background-color: unset;
 
   :hover {
     text-decoration: underline;

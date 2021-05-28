@@ -1,4 +1,8 @@
+import {useCallback} from 'react';
+import {ContactInfo} from '../..';
 import {MessageInResponse} from '../../../api';
+import {useDialog} from '../../../lib/hooks';
+import {dateFormat} from '../../../lib/utilities';
 import {
   Avatar,
   StyledMessage,
@@ -15,21 +19,34 @@ interface Props {
 }
 
 function MessageComponent({className, message}: Props): React.ReactElement {
+  const handleShowDialog = useCallback(() => {
+    showDialog();
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  const handleCloseDialog = useCallback(() => {
+    closeDialog();
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  const {dialog, closeDialog, showDialog} = useDialog(
+    {
+      easyDismiss: true,
+      onClose: handleCloseDialog,
+    },
+    <ContactInfo contactId={message.sender.id} onClose={handleCloseDialog}/>
+  );
 
   return (
     <li className={className}>
-      <Avatar src={message.sender.imageSrc} alt={`image of ${message.sender.name}`}/>
+      {dialog}
+      <Avatar src={message.sender.imageSrc} alt={`image of ${message.sender.name}`} onClick={handleShowDialog}/>
       <TitleAndTextWrapper>
-        <Title>{message.sender.name}</Title>
+        <Title onClick={handleShowDialog}>{message.sender.name}</Title>
         <Text>{message.text}</Text>
       </TitleAndTextWrapper>
-      {/* TODO: improve the logic and the format of the date shown and memoize it*/}
-      <DateWrapper>
-        {`${message.date.getHours() % 12}:${message.date.getMinutes() < 10
-          ? `0${message.date.getMinutes()}`
-          : message.date.getMinutes()}
-        ${message.date.getHours() < 12 ? 'AM' : 'PM'}`}
-      </DateWrapper>
+      <DateWrapper>{dateFormat(message.date)}</DateWrapper>
     </li>
   )
 }

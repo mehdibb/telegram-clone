@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {ChatListItem} from '../../../lib/utilities';
+import {ChatListItem, dateFormat} from '../../../lib/utilities';
 import {
   AvatarImage,
   Description,
@@ -38,11 +38,7 @@ function ChatItemComponent({className, item, activated, onActivate}: Props): Rea
         <Description title={item.description}>{item.description}</Description>
       </TitleAndDescriptionWrapper>
       <InfoWrapper activated={activated}>
-        {/* TODO: improve the logic and the format of the date shown and memoize it*/}
-        <Date>
-          {`${item.date.getHours() % 12}:${item.date.getMinutes() < 10 ? `0${item.date.getMinutes()}` : item.date.getMinutes()}
-          ${item.date.getHours() < 12 ? 'AM' : 'PM'}`}
-        </Date>
+        <Date>{dateFormat(item.date)}</Date>
         {item.unreadMessagesCount ? <UnreadMessagesCount>{item.unreadMessagesCount}</UnreadMessagesCount> : null}
       </InfoWrapper>
     </li>

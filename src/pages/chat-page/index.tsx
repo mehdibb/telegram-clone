@@ -28,9 +28,9 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
     return () => {
       timerIds.forEach((timerId) => {
         clearTimeout(timerId);
-      })
+      });
     }
-  }, [timerIds])
+  }, [timerIds]);
   
   useEffect(() => {
     async function fetchData(): Promise<void> {
@@ -38,7 +38,8 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
       setChatsData(undefined);
 
       try {
-        const response = await api.getChat({contactId});
+        const promise =  api.getChat({contactId});
+        const response = await promise;
 
         switch (response.status) {
           case 200:
@@ -55,7 +56,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
     }
 
     fetchData()
-    // TODO: remove this after this the rule is disabled in eslintrc.js
+    // TODO: remove this after this rule is disabled in eslintrc.js
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contactId]);
 

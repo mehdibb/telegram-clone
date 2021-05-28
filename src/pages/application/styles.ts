@@ -6,6 +6,43 @@ export const StyledNavigationBar = styled(NavigationBar)`
   grid-area: navigation-bar;
 `;
 
+export const Button = styled.button`
+  border: none;
+  color: var(--light-grey);
+  cursor: pointer;
+  background-color: unset;
+
+  :hover {
+    color: var(--white);
+  }
+
+  :not(:last-of-type) {
+    margin-right: 24px;
+  }
+`;
+
+export const ActionsWrapper = styled.div`
+
+`;
+
+export const Title = styled.span`
+  
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  color: var(--white);
+  background-color: var(--main-blue);
+`;
+
+export const ContactDialogWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 export const LeftColumn = styled.aside`
   min-height: 0;
   grid-area: left-column;

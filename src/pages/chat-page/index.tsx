@@ -10,10 +10,13 @@ import {AVATAR_PLACE_HOLDER_IMAGE_SRC, LOGGED_IN_USER} from '../../constants';
 
 interface Props {
   className?: string;
-  contactId: string;
+  contact: {
+    displayName: string;
+    id: string;
+  };
 }
 
-function ChatPageComponent({className, contactId}: Props): React.ReactElement {
+function ChatPageComponent({className, contact}: Props): React.ReactElement {
   const [dataState, setDataState] = useState<State>(State.Loading);
   const [chatsData, setChatsData] = useState<GetChatsResponse['messages']>();
   const [timerIds, setTimerIds] = useState<NodeJS.Timer[]>([]);
@@ -38,7 +41,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
       setChatsData(undefined);
 
       try {
-        const promise =  api.getChat({contactId});
+        const promise =  api.getChat({contactId: contact.id});
         const response = await promise;
 
         switch (response.status) {
@@ -58,7 +61,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
     fetchData()
     // TODO: remove this after this rule is disabled in eslintrc.js
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contactId]);
+  }, [contact]);
 
   const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -83,7 +86,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
             date: new Date(),
             id: uuid(),
             sender: {
-              id: contactId,
+              id: contact.id,
               // FIXME:
               name: 'sender name',
               imageSrc: AVATAR_PLACE_HOLDER_IMAGE_SRC,
@@ -102,7 +105,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
       timerId1,
       timerId2,
     ])
-  }, [contactId, timerIds]);
+  }, [contact, timerIds]);
   
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -111,7 +114,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
 
     async function sendMessage(): Promise<void> {
       try {
-        const response = await api.sendMessage({message: inputValue, receiverId: contactId});
+        const response = await api.sendMessage({message: inputValue, receiverId: contact.id});
 
         switch (response.status) {
           case 200:
@@ -141,7 +144,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
     }
 
     sendMessage();
-  }, [contactId, inputValue, triggerReplyMessage]);
+  }, [contact, inputValue, triggerReplyMessage]);
   
   return (
     <div className={className}>
@@ -150,7 +153,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
         ? <LoadingWrapper>Loading...</LoadingWrapper>
         : dataState === State.Error
           // TODO: implement Error component
-          ? 'Error loading the chats please try again.'
+          ? 'Error loading the chats, please try again.'
           : chatsData
             ? <>
               <MessageList>
@@ -158,7 +161,7 @@ function ChatPageComponent({className, contactId}: Props): React.ReactElement {
                   <Message key={message.id} message={message}></Message>
                 ))}
               </MessageList>
-              <IsTypingWrapper>{isTyping ? `${contactId} is typing...` : null}</IsTypingWrapper>
+              <IsTypingWrapper>{isTyping ? `${contact.displayName} is typing...` : null}</IsTypingWrapper>
               <Form onSubmit={handleSubmit}>
                 <Input placeholder="Write a message..." value={inputValue} onChange={handleInputChange}/>
                 <SendButton

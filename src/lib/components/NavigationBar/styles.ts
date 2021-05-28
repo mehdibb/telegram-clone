@@ -23,12 +23,35 @@ export const NavBarItem = styled.button`
   height: 100%;
   padding: 16px;
   border: unset;
+  color: var(--white);
+  text-align: unset;
   cursor: pointer;
   background-color: var(--main-blue);
 
   :hover {
     background-color: var(--navbar-item-hover-background-color);
   }
+`;
+
+export const AvatarImage = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  border-radius: 50%;
+`;
+
+export const NameWrapper = styled.span`
+  margin-right: 8px;
+  font-weight: 600;
+`;
+
+export const LastSeenWrapper = styled.span`
+  color: var(--light-grey);
+  font-size: 10px;
+`;
+
+export const CurrentChatUserInfo = styled(NavBarItem)`
+  width: calc(100% * 2 / 3);
 `;
 
 export const StyledNavigationBar = styled.nav`

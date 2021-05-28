@@ -4,12 +4,20 @@ import {
   StyledNavigationBar as NavigationBar,
   LeftColumn,
   Placeholder,
+  ContactDialogWrapper,
+  Header,
+  Title,
+  ActionsWrapper,
+  Button,
 } from './styles';
 import {Route, Switch, useHistory, useRouteMatch} from 'react-router-dom';
 import {CHATS_LIST} from '../../constants';
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {ChatListItem} from '../../lib/utilities';
-import {ChatList, ChatPage} from '..';
+import {ChatList, ChatPage, ContactList} from '..';
+import {Item} from '../../lib/components/NavigationBar/Menu/Item';
+import {User} from '../../lib/assets/images';
+import {useDialog} from '../../lib/hooks';
 
 
 interface Props {
@@ -18,6 +26,7 @@ interface Props {
 
 function ApplicationComponent({className}: Props) {
   const [chatListActiveItem, setChatListActiveItem] = useState<ChatListItem>();
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const history = useHistory();
   
@@ -34,11 +43,49 @@ function ApplicationComponent({className}: Props) {
     if (match?.params.contactId) {
       setChatListActiveItem(CHATS_LIST.find(({userId}) => userId === match.params.contactId));
     }
-  }, [match?.params.contactId])
+  }, [match?.params.contactId]);
+
+  const handleCloseContactsDialog = useCallback(() => {
+    setIsDialogOpen(false);
+  }, []);
+  
+  const handleShowContactsDialog = useCallback(() => {
+    setIsDialogOpen(true);
+  }, []);
+  
+  const {dialog} = useDialog(
+    {
+      easyDismiss: true,
+      isShown: isDialogOpen,
+      onClose: handleCloseContactsDialog,
+    },
+    <ContactDialogWrapper>
+      <Header>
+        <Title>Contacts</Title>
+        <ActionsWrapper>
+          <Button>Edit</Button>
+          <Button onClick={handleCloseContactsDialog}>Close</Button>
+        </ActionsWrapper>
+      </Header>
+      <ContactList onClose={handleCloseContactsDialog} />
+    </ContactDialogWrapper>
+  );
+  
+  const navigationBarMenuItems = useMemo((): Item[] => [
+    {
+      Icon: User,
+      callback: handleShowContactsDialog,
+      id: 'contacts',
+      text: 'Contacts',
+    }
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  ], [])
   
   return (
     <div className={className}>
-        <NavigationBar />
+        <NavigationBar menuItems={navigationBarMenuItems}/>
+        {dialog}
         <LeftColumn>
           <ChatList
             items={CHATS_LIST}

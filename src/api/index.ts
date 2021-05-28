@@ -1,4 +1,4 @@
-import {CHATS_LIST, ContactInResponse, CONTACT_RESPONSE, MESSAGES} from "../constants";
+import {CHATS_LIST, ContactInResponse, CONTACTS_RESPONSE, CONTACT_RESPONSE, MESSAGES, MinimalContactInResponse} from "../constants";
 import {ResponseWithBody} from "../lib/utilities";
 
 
@@ -19,6 +19,10 @@ export interface GetChatsResponse {
 
 export interface GetContactResponse {
   contact: ContactInResponse;
+}
+
+export interface GetContactsResponse {
+  contacts: MinimalContactInResponse[];
 }
 
 const BACKEND_DELAY = 200;
@@ -54,14 +58,25 @@ const api = {
 
       setTimeout(
         () => resolve({
-          body: {
-            contact: CONTACT_RESPONSE,
-          },
+          body: CONTACT_RESPONSE,
           status: 200,
         }),
         BACKEND_DELAY,
       );
     });
+  },
+
+  getContacts(): Promise<ResponseWithBody<200, GetContactsResponse>> {
+    return new Promise((resolve) => {
+      
+      setTimeout(
+        () => resolve({
+          body: CONTACTS_RESPONSE,
+          status: 200,
+        }),
+        BACKEND_DELAY,
+      )
+    })
   },
 
   sendMessage({

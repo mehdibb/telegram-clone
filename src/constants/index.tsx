@@ -1,6 +1,6 @@
 import uuid from "uuid";
 import { MessageInResponse } from "../api";
-import { ChatListItem } from "../lib/utilities";
+import { ChatListItem, Image } from "../lib/utilities";
 
 
 export const AVATAR_PLACE_HOLDER_IMAGE_SRC = 'https://i.pinimg.com/originals/de/f6/0b/def60b47cb139c8072b8bfda45047db2.jpg';
@@ -16,40 +16,27 @@ export interface InfoItem {
   type: 'phone' | 'user-name' | 'about';
 }
 
+export interface MinimalContactInResponse {
+  displayName: string;
+  lastSeenAt: Date;
+  id: string;
+  image: Image;
+}
+
+export interface ContactsResponse {
+  contacts: MinimalContactInResponse[];
+}
+
 export interface ContactInResponse {
   displayName: string;
   lastSeenAt: Date;
-  image: {
-    src: string;
-    alt: string;
-  }
+  id: string;
+  image: Image;
   infoItems: InfoItem[]
 }
 
-export const CONTACT_RESPONSE: ContactInResponse = {
-  displayName: 'Contact Display Name',
-  image: {
-    src: AVATAR_PLACE_HOLDER_IMAGE_SRC,
-    alt: 'a picture of the user',
-  },
-  lastSeenAt: new Date(),
-  infoItems: [
-    {
-      text: '+989123456789',
-      title: 'Phone',
-      type: 'phone',
-    },
-    {
-      text: '@userName',
-      title: 'Username',
-      type: 'user-name',
-    },
-    {
-      text: 'Life is sometimes beautiful',
-      type: 'about',
-      title: 'Bio',
-    }
-  ]
+export interface ContactResponse {
+  contact: ContactInResponse;
 }
 
 //FIXME: provide meaningful alt and src for chat list items' avatar image
@@ -361,3 +348,41 @@ export const MESSAGES: MessageInResponse[] = [
     }
   }
 ]
+
+export const CONTACT_RESPONSE: ContactResponse = {
+  contact: {
+    displayName: 'Contact Display Name',
+    image: {
+      src: AVATAR_PLACE_HOLDER_IMAGE_SRC,
+      alt: 'a picture of the user',
+    },
+    lastSeenAt: new Date(),
+    infoItems: [
+      {
+        text: '+989123456789',
+        title: 'Phone',
+        type: 'phone',
+      },
+      {
+        text: '@userName',
+        title: 'Username',
+        type: 'user-name',
+      },
+      {
+        text: 'Life is sometimes beautiful',
+        type: 'about',
+        title: 'Bio',
+      }
+    ],
+    id: CHATS_LIST[0].userId,
+  }
+}
+
+export const CONTACTS_RESPONSE: ContactsResponse = {
+  contacts: CHATS_LIST.map(({avatarImage, date, description, id, title, userId, unreadMessagesCount}) => ({
+    displayName: title,
+    id: userId,
+    image: avatarImage,
+    lastSeenAt: new Date(),
+  }))
+}

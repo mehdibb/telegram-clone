@@ -84,7 +84,18 @@ function ApplicationComponent({className}: Props) {
   
   return (
     <div className={className}>
-        <NavigationBar menuItems={navigationBarMenuItems}/>
+        <NavigationBar
+          menuItems={navigationBarMenuItems}
+          currentChatUser={chatListActiveItem
+            // This is not memoized due to the overhead of memoization
+            ? {
+              id: chatListActiveItem.userId,
+              lastSeenAt: chatListActiveItem.lastSeenAt,
+              displayName: chatListActiveItem.title,
+              image: chatListActiveItem.avatarImage,
+            }
+            : undefined}
+        />
         {dialog}
         <LeftColumn>
           <ChatList
@@ -100,7 +111,10 @@ function ApplicationComponent({className}: Props) {
               </Route>
               <Route path="/chat/:contactId">
                 {chatListActiveItem?.userId
-                  ? <ChatPage contactId={chatListActiveItem?.userId} key={chatListActiveItem.id}/>
+                  ? <ChatPage
+                    contact={{displayName: chatListActiveItem.title, id: chatListActiveItem.userId}}
+                    key={chatListActiveItem.id}
+                  />
                   : <Placeholder>Sorry the user is not accessible.</Placeholder>}
               </Route>
               <Route path="*">

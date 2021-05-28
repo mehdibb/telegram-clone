@@ -52,6 +52,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -64,6 +65,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -75,6 +77,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -87,6 +90,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -99,6 +103,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -111,6 +116,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -122,6 +128,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -134,6 +141,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -146,6 +154,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -158,6 +167,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -169,6 +179,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -181,6 +192,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -193,6 +205,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -205,6 +218,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -216,6 +230,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -228,6 +243,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -240,6 +256,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -252,6 +269,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -263,6 +281,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -275,6 +294,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -287,6 +307,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 1 title 1 title 1 title 1',
     unreadMessagesCount: 10,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -299,6 +320,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 2',
     unreadMessagesCount: 310,
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -310,6 +332,7 @@ export const CHATS_LIST: ChatListItem[] = [
     description: 'description 3 description 3 description 3 description 3 description 3 description 3 description 3',
     id: uuid(),
     title: 'title 3',
+    lastSeenAt: new Date(),
   },
   {
     userId: uuid(),
@@ -322,6 +345,7 @@ export const CHATS_LIST: ChatListItem[] = [
     id: uuid(),
     title: 'title 4',
     unreadMessagesCount: 52,
+    lastSeenAt: new Date(),
   },
 ];
 
@@ -380,9 +404,9 @@ export const CONTACT_RESPONSE: ContactResponse = {
 
 export const CONTACTS_RESPONSE: ContactsResponse = {
   contacts: CHATS_LIST.map(({avatarImage, date, description, id, title, userId, unreadMessagesCount}) => ({
+    lastSeenAt: new Date(),
     displayName: title,
     id: userId,
     image: avatarImage,
-    lastSeenAt: new Date(),
   }))
 }

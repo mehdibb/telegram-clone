@@ -10,7 +10,7 @@ export const AvatarImage = styled.img`
 `;
 
 export const Title = styled.span`
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const Description = styled.span`

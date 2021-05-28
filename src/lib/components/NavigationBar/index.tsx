@@ -1,4 +1,4 @@
-import {Menu as MenuIcon} from '../../assets/images';
+import {Close, Menu as MenuIcon} from '../../assets/images';
 import {
   AvatarImage,
   CurrentChatUserInfo,
@@ -65,7 +65,7 @@ function NavigationBarComponent({className, menuItems, currentChatUser}: Props):
     <nav className={className}>
       {dialog}
       <NavBarItem onClick={handleOpenMenu}>
-        <IconWrapper><MenuIcon /></IconWrapper>
+        <IconWrapper>{isMenuOpen ? <Close /> : <MenuIcon />}</IconWrapper>
         <TextWrapper>Telegram</TextWrapper>
         {isMenuOpen ? <Menu items={menuItems} onClose={handleCloseMenu}/> : null}
       </NavBarItem>

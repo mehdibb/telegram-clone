@@ -11,15 +11,19 @@ export const LastSeen = styled.span`
 `;
 
 export const Name = styled.span`
+  overflow: hidden;
   color: var(--white);
   font-weight: 700;
   font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const NameAndLastSeenWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
   height: 48px;
 `;
 

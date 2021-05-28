@@ -9,7 +9,10 @@ export const AvatarImage = styled.img`
 `;
 
 export const Title = styled.span`
+  overflow: hidden;
   font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const LastSeen = styled.span`
@@ -21,6 +24,7 @@ export const TitleAndLastSeenWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
 `;
 
 export const StyledItem = styled.li`

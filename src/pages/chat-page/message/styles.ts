@@ -11,8 +11,10 @@ export const Avatar = styled.img`
 export const Title = styled.button`
   width: max-content;
   border: unset;
+  overflow: hidden;
   color: var(--main-blue);
   font-weight: 700;
+  text-overflow: ellipsis;
   cursor: pointer;
   background-color: unset;
 
@@ -22,8 +24,7 @@ export const Title = styled.button`
 `;
 
 export const Text = styled.span`
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 `;
 
 export const TitleAndTextWrapper = styled.div`

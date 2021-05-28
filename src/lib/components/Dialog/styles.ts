@@ -5,6 +5,7 @@ export const DialogWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 500px;
   min-width: 500px;
   max-width: 80%;
   max-height: max(90vh, calc(var(--min-height) * 0.9));

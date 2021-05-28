@@ -1,7 +1,7 @@
 import {StyledChatList} from './styles';
-import ChatItem from './chat-item';
+import ChatItem from './item';
 import {ChatListItem} from '../../lib/utilities';
-import { useCallback } from 'react';
+import {useCallback} from 'react';
 
 
 interface Props {

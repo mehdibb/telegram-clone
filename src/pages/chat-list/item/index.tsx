@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { ChatListItem } from '../../../lib/utilities';
+import React, {useCallback} from 'react';
+import {ChatListItem} from '../../../lib/utilities';
 import {
   AvatarImage,
   Description,

@@ -11,10 +11,10 @@ import {
   Button,
 } from './styles';
 import {Route, Switch, useHistory, useRouteMatch} from 'react-router-dom';
-import {CHATS_LIST} from '../../constants';
+import {CHATS_LIST, MinimalContactInResponse} from '../../constants';
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import {ChatListItem} from '../../lib/utilities';
-import {ChatList, ChatPage, ContactList} from '..';
+import {ChatList, ChatPage, ContactInfo, ContactList} from '..';
 import {Item} from '../../lib/components/NavigationBar/Menu/Item';
 import {User} from '../../lib/assets/images';
 import {useDialog} from '../../lib/hooks';
@@ -27,6 +27,7 @@ interface Props {
 function ApplicationComponent({className}: Props) {
   const [chatListActiveItem, setChatListActiveItem] = useState<ChatListItem>();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [showingInfoContact, setShowingInfoContact] = useState<MinimalContactInResponse>();
 
   const history = useHistory();
   
@@ -52,8 +53,38 @@ function ApplicationComponent({className}: Props) {
   const handleShowContactsDialog = useCallback(() => {
     setIsDialogOpen(true);
   }, []);
+
+  const handleActivateItem = useCallback((contact: MinimalContactInResponse) => {
+    setShowingInfoContact(contact);
+    handleShowContactInfoDialog();
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   
-  const {dialog} = useDialog(
+  const handleShowContactInfoDialog = useCallback(() => {
+    showDialog();
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  const handleCloseContactInfoDialog = useCallback(() => {
+    closeDialog();
+    // TODO: remove this after this rule is disabled in eslintrc.js
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  const {dialog: contactInfoDialog, closeDialog, showDialog} = useDialog(
+    {
+      easyDismiss: true,
+      onClose: handleCloseContactInfoDialog,
+    },
+    <>
+      {showingInfoContact
+        ? <ContactInfo contactId={showingInfoContact.id} onClose={handleCloseContactInfoDialog}/>
+        : null}
+    </>
+  );
+  
+  const {dialog: contactListDialog} = useDialog(
     {
       easyDismiss: true,
       isShown: isDialogOpen,
@@ -67,7 +98,7 @@ function ApplicationComponent({className}: Props) {
           <Button onClick={handleCloseContactsDialog}>Close</Button>
         </ActionsWrapper>
       </Header>
-      <ContactList onClose={handleCloseContactsDialog} />
+      <ContactList onClose={handleCloseContactsDialog} onActivateItem={handleActivateItem} />
     </ContactDialogWrapper>
   );
   
@@ -96,7 +127,8 @@ function ApplicationComponent({className}: Props) {
             }
             : undefined}
         />
-        {dialog}
+        {contactListDialog}
+        {contactInfoDialog}
         <LeftColumn>
           <ChatList
             items={CHATS_LIST}

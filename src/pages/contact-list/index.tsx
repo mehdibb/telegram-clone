@@ -4,19 +4,17 @@ import {ContactsResponse, MinimalContactInResponse} from '../../constants';
 import {assertUnreachable, State} from '../../lib/utilities';
 import {ContactsWrapper, LoadingWrapper, StyledContactList} from './styles';
 import ContactListItem from './item';
-import {useHistory} from 'react-router-dom';
 
 
 interface Props {
   className?: string;
   onClose: () => void;
+  onActivateItem: (contact: MinimalContactInResponse) => void;
 }
 
-function ContactList({className, onClose}: Props): React.ReactElement {
+function ContactList({className, onClose, onActivateItem}: Props): React.ReactElement {
   const [contactsData, setContactsData] = useState<ContactsResponse>();
   const [contactsDataState, setContactsDataState] = useState<State>(State.Loading);
-
-  const history = useHistory();
   
   useEffect(() => {
     async function fetchContacts(): Promise<void> {
@@ -44,10 +42,8 @@ function ContactList({className, onClose}: Props): React.ReactElement {
   
   const handleContactListItemActivate = useCallback((contact: MinimalContactInResponse) => {
     onClose();
-    history.push(`/chat/${contact.id}`);
-    // TODO: remove this after this rule is disabled in eslintrc.js
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onClose]);
+    onActivateItem(contact);
+  }, [onActivateItem, onClose]);
   
   return (
     <div className={className}>

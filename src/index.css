@@ -47,9 +47,11 @@ html {
 
 :root {
   --white: #FFF;
+  --dark-blue: #1D2C38;
   --grey: #999;
   --main-blue: #5682A3;
   --root-background-color: #E7EBF0;
+  --input-border-color: #D9DBDE;
   --border-color-light-grey: #E9EBED;
   --list-item-hover-background-color: #F2F6FA;
   --list-item-description-color: #888;

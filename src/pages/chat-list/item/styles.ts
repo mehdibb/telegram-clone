@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Props } from '.';
+import {Props} from '.';
 
 
 export const AvatarImage = styled.img`
@@ -46,14 +46,15 @@ export const UnreadMessagesCount = styled.span`
   color: var(--white);
   font-weight: 700;
   font-size: 12px;
+  line-height: 16px;
   background-color: var(--unread-messages-count-background-color);
 `;
 
 export const InfoWrapper = styled.div<{activated?: boolean}>`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: space-between;
+  align-items: flex-end;
   height: 100%;
   padding: 4px 0;
 
@@ -73,6 +74,7 @@ export const StyledChatItem = styled.li<Props>`
   padding: 8px 16px;
   white-space: nowrap;
   cursor: pointer;
+  user-select: none;
 
   ${({activated}): string => activated
     ? ''

@@ -6,6 +6,7 @@ export const Avatar = styled.img`
   height: 32px;
   margin-right: 16px;
   border-radius: 50%;
+  align-self: baseline;
 `;
 
 export const Title = styled.button`

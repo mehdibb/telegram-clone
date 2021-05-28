@@ -23,6 +23,7 @@ export interface ChatListItem {
   date: Date;
   avatarImage: Image;
   userId: string;
+  lastSeenAt: Date;
   unreadMessagesCount?: number;
 }
 

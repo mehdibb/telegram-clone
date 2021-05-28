@@ -44,7 +44,6 @@ export const DateWrapper = styled.span`
 export const StyledMessage = styled.li`
   display: flex;
   align-items: center;
-  height: 48px;
   padding: 8px 64px;
   font-size: 12px;
   white-space: nowrap;

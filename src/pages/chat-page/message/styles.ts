@@ -25,6 +25,7 @@ export const Title = styled.button`
 
 export const Text = styled.span`
   white-space: normal;
+  word-break: break-word;
 `;
 
 export const TitleAndTextWrapper = styled.div`
